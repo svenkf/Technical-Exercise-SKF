@@ -1,0 +1,50 @@
+﻿Technical Exercise - Sven Feddersen
+
+
+1.In case the time given for the practical task was not enough for you to finish, explain as detailed as possible, what is left to do and why was not possible to complete a working version of this script.
+
+
+During the technical evaluation, I was able to complete the main script that processes the file, calculates the failure rates by origin, and writes the results to a text file. However, I encountered challenges when trying to write the script for the email notification. Since I had no previous experience with this task I tried finding some sort of library that could potentially to that. I found that smtplib was designed for this and though I had not had the time to work on the codes, generally speaking I would have to specify the email of the receiver and sender, body of the email, and well as attaching the output of the other script in the body of this email.
+
+
+2. A research group sequenced 900 patients with highly heterogeneous cancer like
+Hepatocellular Carinoma. Patients' have matched adjacent normals samples.
+
+
+a. Describe a workflow to perform a DE gene analysis as well as gene set enrichment analysis. Justify any programs, databases and statistical tests you would use.
+
+
+To perform a Differential Expression gene analysis a possible workflow could start by processing the raw data. A quality control (QC) of raw sequencing reads can be done using FastQC, which will generate a report detailing different metrics of the sequencing data. Next, trimming low quality reads and eventual adapter sequences can be done using Trimmomatic. By doing this we would make sure that only high quality reads will be used for the rest of the analysis.
+Next, the reads that passed the previous steps need to be aligned to a reference genome. There are several tools to do this (BWA, Bowtie), but given the nature of the analysis (gene expression), STAR is a better choice because it was designed to handle this type of data, and is also fast and accurate, making it appropriate for large datasets.
+The data now needs to be quantified, meaning counting the number of reads located in each gene. One option would be HTSeq. 
+Lastly, for DE analysis, I would use DESeq2. This tool adjusts the read counts to account for differences in the total number of reads and the mix of RNA types in each sample.
+After identifying these DE genes, I would do an analysis to try to understand the biological impact of these genes. For example, if these genes show significant differences between tumour and normal samples. This should be achievable by consulting an appropriate database.
+
+b. Discuss any limitations we should be aware of to perform this kind of analysis.
+
+
+Some possible limitations for this kind of analysis revolve around the size of the dataset. Considering different subgroups, for example, the different types and stages of cancer, the variability that could require more than 900 patients to be studied and to have reliable conclusions to be made.
+Also, ensuring that the methods, bioinformatic tools, databases and reference genomes are consistent for the entire dataset, from sequencing, QC, trimming, alignment, expression analysis.
+
+
+c. These heatmaps show the gene expression of the samples (A) and their DE analyses (FDR<0.05), what are your comments to the researcher?
+
+
+The heatmap A shows the gene expression levels of tumor and normal samples. There is a clear separation between tumor and normal samples, which indicates different patterns of gene expression, suggesting that many genes are expressed differently between tumor and normal conditions. The variations in color intensity reflect differences in expression levels, with some genes being more epxressed in tumors and others in normal tissues.
+Heatmap B seems to focus on genes identified as differentially expressed. The different groups/clusters of patients shows that there may be subgroups within the tumor samples. 
+
+
+3. You are working with 3 consulting projects. One is a differential expression analysis from microarray data. The second is the analysis of TMT data that you got from the Proteomics facility while the third is the identification of a virus integration in some clinical samples. You will be delivering the results sometime during next week, as agreed with the different users. A fourth user got the reviewer’s comments and they need to answer back in a week, so they need your help during this week. What would you do?
+
+
+The situation shows a need for good time management skills as well as a good communication ability. To manage it, I would prioritize tasks based on their urgency and importance. The fourth user's request is the most urgent, with a deadline of one week, making it crucial for their project's progress. I would start by contacting the fourth user immediately to try to understand the reviewer’s comments, which helps in estimating the time needed to assist them effectively. If possible, I would delegate parts of the less urgent tasks to colleagues or team members, allowing me to focus more on the urgent task. I would dedicate a time block every day to deal with the reviewers’ comments. Also, I would set clear checkpoints and deadlines for the three ongoing projects to maintain progress and ensure they don’t stop or get late. Finally, I would check the progress on the urgent task at the end of each day and adjust the plan as necessary to make sure it is moving forward. BRoadly speaking, I’d focus on the most urgent task first, and keep the other projects going even if it's a slowed pace. 
+
+
+4. During a first meeting consultation, the analysis that the group is asking you to do is quite new and you haven’t performed it before. As usual, they need results in as soon as possible for a grant application. What would you do?
+
+
+I would quickly to gather as much information as possible, by reading as much literature as possible, tutorials, and talking to other colleagues. Next, I would identify and learn the necessary tools and software.If needed, I would seek help from colleagues or experts to improve the quality of the work. By learning quickly, planning effectively, maintaining communication, and seeking expert advice, I can increase the chances of getting getting good results in time for the grant application.
+
+
+5. After having delivered the final results to a user, you are contacted by the PI saying that the results you delivered do not make sense. You check them and you realize you made a mistake in one of the calculations. What would you do?
+If I realize a mistake after delivering the results, I would immediately acknowledge the mistake to both the PI and the user and start working on a solution. Firstly, I would identify the error and understand its cause to prevent it from happening again. Once the mistake is found and corrected, I would re-run the analysis and verify the main steps to ensure that was the only issue. To prevent similar situations in the future, it would be beneficial to improve the workflow and possibly add checkpoints. After everything is corrected, I would prepare a brief report to communicate to the PI and the user what was wrong and how it was corrected in the analysis.
